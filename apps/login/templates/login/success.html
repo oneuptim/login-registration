@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<!Doctype html>
+<html>
+    <head>
+       <title>login and re</title>
+       <link rel="stylesheet" href="{% static 'login/css/styles.css' %}">
+       <script src="https://use.typekit.net/iii7xtz.js"></script>
+       <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    </head>
+    <body>
+      <div id="wrapper">
+        <h1>Success! Welcome, {{ request.session.first_name }}!</h1>
+      </div>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+#wrapper { width: 1200px; margin: 0 auto; text-align: center; padding: 50px;}
+body { font-family: "futura-pt"; background: #f8f8f8;}
+h1 { margin-bottom: 15px; opacity: 0.5; }
+.button { padding: 20px; margin: 40px; border: none; background-color: #35bb65; color: #fff; text-transform: uppercase; cursor: pointer;}
+p { margin-bottom: 40px; }
+input { padding: 6px; font-size: 14px; width: 100%; }
+input[type="submit" i] { width: 104%; font-size: 15px; padding: 15px; margin: 0 0 20px 0; border:0 none; cursor: pointer; background-color: #35bb65; text-transform: uppercase; color: white; }
+select {width: 100%; font-size: 14px; margin: 20px 0; }
+.all_blogs, textarea { width: 101%; margin: 40px 0; padding: 5px; min-height: 200px; font-size: 16px; font-weight: 100; }
+
+.all_blogs, textarea { width: 101%; margin: 40px 0; padding: 5px; min-height: 80px; font-size: 16px; font-weight: 100; }
+h2, a {text-decoration: none; color: #c71786;}
+h2, a:hover {color: #5f4c58; }
+.all_blogs { width: 600px; display: inline-block; margin-right: 40px; }
+.all_blogs, p { text-align: left; }
+.new_blog { width: 520px; display: inline-block; vertical-align: top; margin-top: 80px; }
