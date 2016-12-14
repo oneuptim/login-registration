@@ -10,39 +10,40 @@
     </head>
     <body>
       <div id="wrapper">
-        {% for error in request.session.errors %}
-        <p>{{error}}</p>
-        {% endfor %}
-      <h1>Welcome!</h1>
-      <h3>Registration</h3>
-      <form action="/register_process" method="post">
-      {% csrf_token %}
-      <br>
-  		<input type="text" name="first_name" placeholder="first name:"><br>
-      <br>
-      <input type="text" name="last_name" placeholder="last name:"><br>
-      <br>
-      <input type="text" name="email" placeholder="Email:"><br>
-      <br>
-      <input type="text" name="password" placeholder="Password:"><br>
-      <br>
-      <input type="text" name="con_password" placeholder="Confirm Password:"><br>
-  		<br>
-  		<input type="submit" value="Register">
-      </form>
-
-      <br>
-      <br>
-      <h3>Login</h3>
-      <form action="/login_process" method="post">
-      {% csrf_token %}
-      <br>
-      <input type="text" name="email" placeholder="Email:"><br>
-      <br>
-      <input type="text" name="password" placeholder="Password:"><br>
-      <br>
-      <input type="submit" value="Login">
-      </form>
+        <div class="register">
+          {% for error in request.session.errors %}
+          <p>{{error}}</p>
+          {% endfor %}
+        <h1>Welcome!</h1>
+        <h3>Registration</h3>
+        <form action="/register_process" method="post">
+        {% csrf_token %}
+        <br>
+    		<input type="text" name="first_name" placeholder="first name:"><br>
+        <br>
+        <input type="text" name="last_name" placeholder="last name:"><br>
+        <br>
+        <input type="text" name="email" placeholder="Email:"><br>
+        <br>
+        <input type="text" name="password" placeholder="Password:"><br>
+        <br>
+        <input type="text" name="con_password" placeholder="Confirm Password:"><br>
+    		<br>
+    		<input type="submit" value="Register">
+        </form>
+      </div>
+      <div class="login">
+        <h3>Login</h3>
+        <form action="/login_process" method="post">
+        {% csrf_token %}
+        <br>
+        <input type="text" name="email" placeholder="Email:"><br>
+        <br>
+        <input type="text" name="password" placeholder="Password:"><br>
+        <br>
+        <input type="submit" value="Login">
+        </form>
+      </div>
     </div>
     </body>
 </html>
