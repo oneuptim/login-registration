@@ -14,7 +14,6 @@
           {% for error in request.session.errors %}
           <p>{{error}}</p>
           {% endfor %}
-        <h1>Welcome!</h1>
         <h3>Registration</h3>
         <form action="/register_process" method="post">
         {% csrf_token %}
@@ -23,11 +22,11 @@
         <br>
         <input type="text" name="last_name" placeholder="last name:"><br>
         <br>
-        <input type="text" name="email" placeholder="Email:"><br>
+        <input type="email" name="email" placeholder="Email:"><br>
         <br>
-        <input type="text" name="password" placeholder="Password:"><br>
+        <input type="password" name="password" placeholder="Password:"><br>
         <br>
-        <input type="text" name="con_password" placeholder="Confirm Password:"><br>
+        <input type="password" name="confirm_password" placeholder="Confirm Password:"><br>
     		<br>
     		<input type="submit" value="Register">
         </form>
@@ -37,9 +36,9 @@
         <form action="/login_process" method="post">
         {% csrf_token %}
         <br>
-        <input type="text" name="email" placeholder="Email:"><br>
+        <input type="email" name="email" placeholder="Email:"><br>
         <br>
-        <input type="text" name="password" placeholder="Password:"><br>
+        <input type="password" name="password" placeholder="Password:"><br>
         <br>
         <input type="submit" value="Login">
         </form>

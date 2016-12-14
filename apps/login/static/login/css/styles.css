@@ -35,16 +35,16 @@ input[type=submit] {
   font-size: 18px;
   font-weight: 100;
   margin-top: 20px;
-  /*background-color: #4CAF50;*/
+  background-color: #4CAF50;
   color: #fff;
   border: none;
 }
 
-/*input[type=submit] .logoutBtn {
-  background-color: red;
+input[type=submit] .logoutBtn {
+  background-color: #4CAF50;
   width: 42%;
   vertical-align: baseline;
-}*/
+}
 
 hr {
   width: 94%;

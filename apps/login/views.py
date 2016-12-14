@@ -18,8 +18,8 @@ def success(request):
 def register_process(request):
 	errors =[]
 	if request.method == "POST":
-		result = User.userMgr.register(request.POST['first_name'],request.POST['last_name'],request.POST['email'],request.POST['password'])
-	
+		result = User.userMgr.register(request.POST['first_name'],request.POST['last_name'],request.POST['email'],request.POST['password'], request.POST['confirm_password'])
+
 		if result[0]==True:
 			request.session['first_name'] = result[1].first_name
 			print result, "*******************************************************"
@@ -33,15 +33,17 @@ def register_process(request):
 		return redirect ('/')
 
 def login_process(request):
+
 	errors =[]
 	result = User.userMgr.login(request.POST['email'],request.POST['password'])
+	print result, "**************************************************************"
 
 	if result[0] == True:
 		request.session['first_name'] = result[1][0].first_name
 		# We have result[1][0] this refers to the results of the query (user query returned) and index of zero which is what we just unwrapped.
+		print request.session['first_name'], "**************************************************************"
 		return redirect('/success')
+
 	else:
 		request.session['errors'] = result[1]
 		return redirect('/')
-
-

@@ -8,48 +8,51 @@ nameRegex = re.compile(r'^(?=.{2,})([a-zA-z]*)$')
 
 class UserManager(models.Manager):
 
-	def register(self, first_name, last_name, email, password):
+	def register(self, first_name, last_name, email, password, confirm_password):
 		errors = []
 		if (len(first_name) == 0) or (len(last_name) == 0)  or (len(email) == 0) or (len(password) == 0):
 			errors.append("Cannot be blank")
-		elif (not emailRegex.match(email)) or (not nameRegex.match(first_name)) or (not nameRegex.match(last_name)) or (not passRegex.match(password)):
-		# elif (not emailRegex.match(email)) or (not nameRegex.match(first_name)) or (not nameRegex.match(last_name)):
 
+		elif (not emailRegex.match(email)) or (not nameRegex.match(first_name)) or (not nameRegex.match(last_name)) or (not passRegex.match(password)):
+
+		# elif (not emailRegex.match(email)) or (not nameRegex.match(first_name)) or (not nameRegex.match(last_name)):
 			errors.append("Invalid input")
+
+		elif (not password == confirm_password):
+		# if password !== confirm_password: # Different way to write not statement.
+			errors.append("Passwords don't match!")
 
 		if len(errors) is not 0:
 			return (False, errors)
 		else:
-			new_user = User.userMgr.create(first_name=first_name, last_name=last_name, email=email, password=password)
+			pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+			# pw_hash = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt())
+			print pw_hash, "888888888888888888888888888888888888888888888888888888888888888888888888888888888888"
+			new_user = User.userMgr.create(first_name=first_name, last_name=last_name, email=email, password=pw_hash)
 
 		return (True, new_user)
 
 	def login(self, email, password):
 		errors =[]
-
 		user = User.userMgr.filter(email=email)
 		# This query returns as an array, should always be unwrapped/unzipped in order to access the objects in the array!
 
 		if user:
-			print user,"user exist"
+			compare_password = password.encode()
 
-			if (user[0].password == password):
-				print user[0].password,"That is your password"
+			if bcrypt.hashpw(compare_password, user[0].password.encode()) == user[0].password:
+			# if bcrypt.hashpw(user[0].password.encode() == compare_password):
+				print user[0].password,"That is your password", ("*"*500)
 
-				return True
+				return (True, user)
 			else:
 				errors.append("password didnt match")
 				print "password didnt match"
-			# return (True, user)
+				return (False, errors)
 		else:
-			print "no email found"
+			print "No email found"
 			errors.append("No email found in our system, please register dude!!!")
 			return (False, errors)
-
-		# return (True, user)
-
-
-
 
 class User(models.Model):
 	first_name = models.CharField(max_length=45, blank=True, null=True)
